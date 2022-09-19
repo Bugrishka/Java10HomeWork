@@ -32,10 +32,6 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
-// С данным тестом вышла проблема, которую не смог исправить,
-//    setCurrentVolume при ретурне отдает "0", тогда в turnUpTheVolume
-//    срабатывае ++ и результат не соответствует, как можно это реализовать?
-//
 
     @Test
     public void shouldNotIncreaseIfTheVolumeNegativeValue() {
@@ -87,20 +83,6 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
-
-//    Та же история
-//    @Test
-//    public void shouldNotIncreaseIfTheVolumeEleven() {
-//        Radio volume = new Radio();
-//        volume.setCurrentVolume(11);
-//
-//        volume.turnUpTheVolume();
-//
-//        int expected = 0;
-//        int actual = volume.getCurrentVolume();
-//
-//        Assertions.assertEquals(expected, actual);
-//    }
 
     @Test
     public void shouldNotDecreaseIfTheVolumeNegativeValue() {
@@ -270,20 +252,6 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-//   Та же история
-//    @Test
-//    public void shouldSwitchToThePrevStationIfNowTenStation() {
-//        Radio station = new Radio();
-//        station.setCurrentRadioStation(10);
-//
-//        station.prevStation();
-//
-//        int expected = 0;
-//        int actual = station.getCurrentRadioStation();
-//
-//        Assertions.assertEquals(expected, actual);
-//    }
-
     @Test
     public void switchStationToZero() {
         Radio station = new Radio();
@@ -327,6 +295,58 @@ public class RadioTest {
         station.setCurrentRadioStation(10);
 
         int expected = 0;
+        int actual = station.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToTheNextStationIfRadioHasTwentyStations(){
+        Radio station = new Radio(20);
+        station.setCurrentRadioStation(15);
+
+        station.nextStation();
+
+        int expected = 16;
+        int actual = station.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToThePrevStationIfRadioHasTwentyStations(){
+        Radio station = new Radio(20);
+        station.setCurrentRadioStation(15);
+
+        station.prevStation();
+
+        int expected = 14;
+        int actual = station.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToTheNextStationIfRadioHasTwentyStationsAndNowLastStation(){
+        Radio station = new Radio(20);
+        station.setCurrentRadioStation(19);
+
+        station.nextStation();
+
+        int expected = 0;
+        int actual = station.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToThePrevStationIfRadioHasTwentyStationsAndNowFirstStation(){
+        Radio station = new Radio(20);
+        station.setCurrentRadioStation(0);
+
+        station.prevStation();
+
+        int expected = 19;
         int actual = station.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);

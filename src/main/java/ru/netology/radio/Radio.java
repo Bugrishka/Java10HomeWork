@@ -33,14 +33,16 @@ public class Radio {
     }
 
     public void turnUpTheVolume() {
-        if (currentVolume < 10 && currentVolume >= 0) {
+        if (currentVolume < 10) {
             currentVolume ++;
         }
     }
     public void turnDownTheVolume() {
-        if (currentVolume <= 10 && currentVolume > 0) {
-            currentVolume --;
+        if (currentVolume <= 0) {
+            return;
         }
+        currentVolume --;
+
     }
 
     public void nextStation () {
